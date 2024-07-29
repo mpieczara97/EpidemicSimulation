@@ -18,6 +18,12 @@ public class Simulation {
     private int daysToDeath;
     private int simulationDays;
 
+    public Simulation() {
+    }
+
+    public Simulation(String name, int populationSize) {
+    }
+
     public Long getId() {
         return id;
     }
