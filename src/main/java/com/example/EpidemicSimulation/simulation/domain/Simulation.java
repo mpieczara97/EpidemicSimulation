@@ -22,6 +22,8 @@ public class Simulation {
     }
 
     public Simulation(String name, int populationSize) {
+        this.name = name;
+        this.populationSize = populationSize;
     }
 
     public Long getId() {
