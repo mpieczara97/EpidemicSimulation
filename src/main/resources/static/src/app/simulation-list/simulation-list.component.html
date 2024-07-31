@@ -1,0 +1,35 @@
+<div class="list-container">
+  <h2 class="list-title">Simulation List</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Population Size</th>
+        <th>Initial Infected</th>
+        <th>Reproduction Number</th>
+        <th>Mortality Rate</th>
+        <th>Days to Recovery</th>
+        <th>Days to Death</th>
+        <th>Simulation Days</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let simulation of simulations">
+        <td>{{ simulation.name }}</td>
+        <td>{{ simulation.populationSize }}</td>
+        <td>{{ simulation.initialInfected }}</td>
+        <td>{{ simulation.reproductionNumber }}</td>
+        <td>{{ simulation.mortalityRate }}</td>
+        <td>{{ simulation.daysRecovery }}</td>
+        <td>{{ simulation.daysToDeath }}</td>
+        <td>{{ simulation.simulationDays }}</td>
+        <td>
+          <button (click)="deleteSimulation(simulation.id)" class="btn btn-delete">Delete</button>
+          <button [routerLink]="['/simulation-detail', simulation.id]" class="btn btn-details">Details</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button [routerLink]="['/simulation-create']" class="btn btn-create">Create New Simulation</button>
+</div>

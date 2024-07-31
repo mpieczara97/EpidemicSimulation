@@ -1,0 +1,40 @@
+<div class="container">
+    <h2>{{ simulation.id ? 'Edit' : 'Create' }} Simulation</h2>
+    <form (ngSubmit)="save()">
+      <div>
+        <label>Name:</label>
+        <input [(ngModel)]="simulation.name" name="name" required>
+      </div>
+      <div>
+        <label>Population Size:</label>
+        <input type="number" [(ngModel)]="simulation.populationSize" name="populationSize" required>
+      </div>
+      <div>
+        <label>Initial Infected:</label>
+        <input type="number" [(ngModel)]="simulation.initialInfected" name="initialInfected" required>
+      </div>
+      <div>
+        <label>Reproduction Number:</label>
+        <input type="number" step="0.1" [(ngModel)]="simulation.reproductionNumber" name="reproductionNumber" required>
+      </div>
+      <div>
+        <label>Mortality Rate:</label>
+        <input type="number" step="0.1" [(ngModel)]="simulation.mortalityRate" name="mortalityRate" required>
+      </div>
+      <div>
+        <label>Days to Recovery:</label>
+        <input type="number" [(ngModel)]="simulation.daysRecovery" name="daysToRecovery" required>
+      </div>
+      <div>
+        <label>Days to Death:</label>
+        <input type="number" [(ngModel)]="simulation.daysToDeath" name="daysToDeath" required>
+      </div>
+      <div>
+        <label>Simulation Days:</label>
+        <input type="number" [(ngModel)]="simulation.simulationDays" name="simulationDays" required>
+      </div>
+      <button type="submit">Save</button>
+      <button type="button" (click)="goBack()">Cancel</button>
+    </form>
+  </div>
+  

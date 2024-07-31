@@ -1,0 +1,63 @@
+<div class="form-container">
+  <h2 class="form-title">Create Simulation</h2>
+  <form (ngSubmit)="save()" #simulationForm="ngForm">
+    <div class="form-group">
+      <input class="form-control" placeholder="Name" [(ngModel)]="simulation.name" name="name" required #name="ngModel">
+      <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error">
+        <small *ngIf="name.errors?.['required']">Name is required.</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="number" class="form-control" placeholder="Population Size" [(ngModel)]="simulation.populationSize" name="populationSize" required min="1" #populationSize="ngModel">
+      <div *ngIf="populationSize.invalid && (populationSize.dirty || populationSize.touched)" class="error">
+        <small *ngIf="populationSize.errors?.['required']">Population Size is required.</small>
+        <small *ngIf="populationSize.errors?.['min']">Population Size must be at least 1.</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="number" class="form-control" placeholder="Initial Infected" [(ngModel)]="simulation.initialInfected" name="initialInfected" required min="1" [max]="simulation.populationSize" #initialInfected="ngModel">
+      <div *ngIf="initialInfected.invalid && (initialInfected.dirty || initialInfected.touched)" class="error">
+        <small *ngIf="initialInfected.errors?.['required']">Initial Infected is required.</small>
+        <small *ngIf="initialInfected.errors?.['min']">Initial Infected must be at least 1.</small>
+        <small *ngIf="initialInfected.errors?.['max']">Initial Infected cannot exceed Population Size.</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="number" step="0.1" class="form-control" placeholder="Reproduction Number" [(ngModel)]="simulation.reproductionNumber" name="reproductionNumber" required min="0" #reproductionNumber="ngModel">
+      <div *ngIf="reproductionNumber.invalid && (reproductionNumber.dirty || reproductionNumber.touched)" class="error">
+        <small *ngIf="reproductionNumber.errors?.['required']">Reproduction Number is required.</small>
+        <small *ngIf="reproductionNumber.errors?.['min']">Reproduction Number must be at least 0.</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="number" step="0.01" class="form-control" placeholder="Mortality Rate" [(ngModel)]="simulation.mortalityRate" name="mortalityRate" required min="0" max="1" #mortalityRate="ngModel">
+      <div *ngIf="mortalityRate.invalid && (mortalityRate.dirty || mortalityRate.touched)" class="error">
+        <small *ngIf="mortalityRate.errors?.['required']">Mortality Rate is required.</small>
+        <small *ngIf="mortalityRate.errors?.['min']">Mortality Rate must be at least 0.</small>
+        <small *ngIf="mortalityRate.errors?.['max']">Mortality Rate cannot exceed 1.</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="number" class="form-control" placeholder="Days to Recovery" [(ngModel)]="simulation.daysRecovery" name="daysRecovery" required min="1" #daysRecovery="ngModel">
+      <div *ngIf="daysRecovery.invalid && (daysRecovery.dirty || daysRecovery.touched)" class="error">
+        <small *ngIf="daysRecovery.errors?.['required']">Days to Recovery is required.</small>
+        <small *ngIf="daysRecovery.errors?.['min']">Days to Recovery must be at least 1.</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="number" class="form-control" placeholder="Days to Death" [(ngModel)]="simulation.daysToDeath" name="daysToDeath" required min="1" #daysToDeath="ngModel">
+      <div *ngIf="daysToDeath.invalid && (daysToDeath.dirty || daysToDeath.touched)" class="error">
+        <small *ngIf="daysToDeath.errors?.['required']">Days to Death is required.</small>
+        <small *ngIf="daysToDeath.errors?.['min']">Days to Death must be at least 1.</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="number" class="form-control" placeholder="Simulation Days" [(ngModel)]="simulation.simulationDays" name="simulationDays" required min="1" #simulationDays="ngModel">
+      <div *ngIf="simulationDays.invalid && (simulationDays.dirty || simulationDays.touched)" class="error">
+        <small *ngIf="simulationDays.errors?.['required']">Simulation Days is required.</small>
+        <small *ngIf="simulationDays.errors?.['min']">Simulation Days must be at least 1.</small>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-gradient" [disabled]="simulationForm.invalid">Submit</button>
+  </form>
+</div>

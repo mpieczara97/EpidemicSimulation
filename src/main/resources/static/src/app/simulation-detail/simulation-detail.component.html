@@ -1,0 +1,53 @@
+<div class="detail-container">
+  <h2 class="detail-title">{{ simulation?.name }} Details</h2>
+  <div class="detail-content">
+    <div><span>Population Size:</span> {{ simulation?.populationSize }}</div>
+    <div><span>Initial Infected:</span> {{ simulation?.initialInfected }}</div>
+    <div><span>Reproduction Number:</span> {{ simulation?.reproductionNumber }}</div>
+    <div><span>Mortality Rate:</span> {{ simulation?.mortalityRate }}</div>
+    <div><span>Days to Recovery:</span> {{ simulation?.daysRecovery }}</div>
+    <div><span>Days to Death:</span> {{ simulation?.daysToDeath }}</div>
+    <div><span>Simulation Days:</span> {{ simulation?.simulationDays }}</div>
+  </div>
+
+  <div class="chart-container">
+    <h3>Simulation Results</h3>
+    <ngx-charts-line-chart
+      [view]="view"
+      [scheme]="colorScheme"
+      [results]="chartData"
+      [gradient]="gradient"
+      [xAxis]="showXAxis"
+      [yAxis]="showYAxis"
+      [legend]="showLegend"
+      [showXAxisLabel]="showXAxisLabel"
+      [showYAxisLabel]="showYAxisLabel"
+      [xAxisLabel]="xAxisLabel"
+      [yAxisLabel]="yAxisLabel">
+    </ngx-charts-line-chart>
+  </div>
+
+  <div class="table-container">
+    <h3>Detailed Data</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Day</th>
+          <th>Susceptible</th>
+          <th>Infected</th>
+          <th>Dead</th>
+          <th>Recovered</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let result of simulation?.simulationResultDtoList">
+          <td>{{ result.day }}</td>
+          <td>{{ result.susceptible }}</td>
+          <td>{{ result.infected }}</td>
+          <td>{{ result.dead }}</td>
+          <td>{{ result.recovered }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
