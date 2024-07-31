@@ -9,5 +9,4 @@ public class EpidemicSimulationApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EpidemicSimulationApplication.class, args);
 	}
-
 }

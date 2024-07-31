@@ -13,6 +13,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/simulation")
 @RestController
 class SimulationController {
@@ -41,12 +42,15 @@ class SimulationController {
         return ResponseEntity.created(createdSimulationUri(simulation)).build();
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<SimulationDto> updateSimulation(@PathVariable Long id, @RequestBody SimulationDto simulationDto) {
+        Simulation updatedSimulation = simulationService.updateSimulation(id, simulationDto);
+        return ResponseEntity.ok(SimulationConverter.toDto(updatedSimulation));
+    }
+
     @GetMapping("/{id}")
-    public ResponseEntity<Simulation> getById(@PathVariable Long id) {
-        return simulationService
-                .findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<SimulationDto> getById(@PathVariable Long id) {
+        return ResponseEntity.ok(simulationService.findById(id));
     }
 
     @DeleteMapping("/{id}")
